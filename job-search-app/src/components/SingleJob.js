@@ -6,10 +6,10 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  likeTheJob: (id) =>
+  likeTheJob: (job) =>
     dispatch({
       type: "LIKE_A_JOB",
-      payload: id,
+      payload: job
     }),
 });
 
@@ -33,7 +33,7 @@ class JobPost extends Component {
                         {job.location}
                       </Card.Text>
                       <Card.Link onClick={() => this.props.likeTheJob(job.id)} >See more</Card.Link>
-                      <Card.Link><AiOutlineHeart onClick={() => this.props.likeTheJob(job.id)} className="ml-auto"/></Card.Link>
+                      <Card.Link><AiOutlineHeart onClick={() => this.props.likeTheJob(job)} className="ml-auto"/></Card.Link>
                       
                     </Card.Body>
                   </Card>

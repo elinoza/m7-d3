@@ -8,9 +8,18 @@ import {
   } from "react-bootstrap";
   import SingleJob from "./SingleJob"
 
+  import { connect } from "react-redux";
 
-
-export default class Home extends Component {
+  const mapStateToProps = (state) => state;
+  
+  const mapDispatchToProps = (dispatch) => ({
+    makeJobsGlobal: (jobs) =>
+      dispatch({
+        type: "ADD-ALL-JOBS",
+        payload: jobs,
+      }),
+  });
+ class Home extends Component {
     state={
         position:"",
         location:"",
@@ -20,7 +29,7 @@ export default class Home extends Component {
       fetchJobs = async () => {
           
         try {
-          let proxy = "https://miksflame-observablehq.herokuapp.com/";
+        
           let position = this.state.position;
           let location = this.state.location;
           let response = await fetch(
@@ -33,6 +42,7 @@ export default class Home extends Component {
             const jobs = await response.json();
             console.log(jobs);
             this.setState({ joblist: jobs });
+            this.makeJobsGlobal(jobs)
           }
         } catch (error) {
           console.log(error);
@@ -42,7 +52,6 @@ export default class Home extends Component {
         return (
             <Container>
 
-                <h1> SEARCH YOUR DREAM JOB</h1>
             
                  <Form  className="mt-5" >
 
@@ -67,3 +76,4 @@ export default class Home extends Component {
         )
     }
 }
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

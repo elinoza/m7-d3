@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import {Container,Button} from "react-bootstrap";
+import {Container,Button,Card} from "react-bootstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {BsFillTrashFill} from 'react-icons/bs';
 
@@ -21,20 +21,33 @@ class Favourites extends Component {
     return (
       <Container>
       <div className="row">
-        HELLO
+        
         <ul className="col-sm-12" style={{ listStyle: "none" }}>
           {this.props.favourites.map((job, i) => (
             <li key={i} className="my-4">
-              <Button
-                variant="danger"
-                onClick={() => this.props.removeFromFavourites(job.id)}
-              >
-                <BsFillTrashFill id="trashIcon" />
-              </Button>
-           
-              {job}
-              {/* {job.company}
-              {job.location} */}
+             
+              <Card className="shadow d-flex" style={{ width: 'auto', height:"auto", border:"2px solid beige" }}>
+                    <Card.Body>
+                      <Card.Title>{job.title}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
+                      <Card.Text>
+                        {job.type}
+                      </Card.Text>
+                      <Card.Text className="text-muted d-flex ">
+                        {job.location}
+                        <Button
+                        variant="danger"
+                        className="ml-auto"
+                        onClick={() => this.props.removeFromFavourites(job.id)}
+                      >
+                        <BsFillTrashFill id="trashIcon" />
+                      </Button>
+                      </Card.Text>
+                  
+                    </Card.Body>
+                 
+                  </Card>
+              
 
             </li>
           ))}

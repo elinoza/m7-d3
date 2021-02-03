@@ -10,6 +10,11 @@ export default function (state = {}, action) {
       case "UNLIKE_JOB":
         return {
         };
+        case "ADD-ALL-JOBS":
+        return {
+            ...state,
+            joblist: state.joblist.concat(action.payload),
+        };
   
      
       default:

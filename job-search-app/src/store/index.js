@@ -3,6 +3,7 @@ import rootReducer from "../reducers";
 
 const initialState = {
     favourites: [],
+    joblist:[]
 };
 
 export default function configureStore() {
