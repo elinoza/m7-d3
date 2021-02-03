@@ -60,7 +60,7 @@ export default class Home extends Component {
                         
                     </Form>
 
-                    <Row>
+                    <Row className="mt-4 mb-4">
             {this.state.joblist !==[] && this.state.joblist.map((job,index) => (<SingleJob key={index} job={job} />))}
             </Row>
             </Container>

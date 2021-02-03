@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card,  Col  } from 'react-bootstrap'
+import {AiOutlineHeart } from 'react-icons/ai';
 
 export default class JobPost extends Component {
     render() {
@@ -21,6 +22,7 @@ export default class JobPost extends Component {
                         {job.location}
                       </Card.Text>
                       <Card.Link>See more</Card.Link>
+                      <AiOutlineHeart className="ml-auto"/>
                     </Card.Body>
                   </Card>
                   </Col>
