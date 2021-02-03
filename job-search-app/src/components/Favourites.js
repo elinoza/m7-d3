@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  removeFromFavourites: (id) =>
-    dispatch({ type: "UNLIKE_JOB", payload: id }),
+  removeFromFavourites: (job) =>
+    dispatch({ type: "UNLIKE_JOB", payload: job}),
 });
 
 class Favourites extends Component {
@@ -38,7 +38,7 @@ class Favourites extends Component {
                         <Button
                         variant="danger"
                         className="ml-auto"
-                        onClick={() => this.props.removeFromFavourites(job.id)}
+                        onClick={() => this.props.removeFromFavourites(job)}
                       >
                         <BsFillTrashFill id="trashIcon" />
                       </Button>

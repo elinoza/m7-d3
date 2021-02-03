@@ -9,6 +9,11 @@ export default function (state = {}, action) {
         };
       case "UNLIKE_JOB":
         return {
+            ...state,
+            favourites: [
+                ...state.favourites.filter(
+                  (id) => id !== action.payload.id
+                )]
         };
         case "ADD-ALL-JOBS":
         return {
