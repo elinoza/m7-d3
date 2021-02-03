@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import { Card,  Col  } from 'react-bootstrap'
 import {AiOutlineHeart } from 'react-icons/ai';
+import { connect } from "react-redux";
 
-export default class JobPost extends Component {
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  likeTheJob: (id) =>
+    dispatch({
+      type: "LIKE_A_JOB",
+      payload: id,
+    }),
+});
+
+class JobPost extends Component {
     render() {
 
       const {job}=this.props
@@ -21,8 +32,9 @@ export default class JobPost extends Component {
                       <Card.Text className="text-muted">
                         {job.location}
                       </Card.Text>
-                      <Card.Link>See more</Card.Link>
-                      <AiOutlineHeart className="ml-auto"/>
+                      <Card.Link onClick={() => this.props.likeTheJob(job.id)} >See more</Card.Link>
+                      <Card.Link><AiOutlineHeart onClick={() => this.props.likeTheJob(job.id)} className="ml-auto"/></Card.Link>
+                      
                     </Card.Body>
                   </Card>
                   </Col>
@@ -36,3 +48,4 @@ export default class JobPost extends Component {
         )
     }
 }
+export default connect(mapStateToProps, mapDispatchToProps)(JobPost);

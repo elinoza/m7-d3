@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import rootReducer from "../reducers";
 
 const initialState = {
-    favorites: [],
+    favourites: [],
 };
 
 export default function configureStore() {
