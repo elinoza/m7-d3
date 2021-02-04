@@ -3,6 +3,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 // import rootReducer from "../reducers"; it is not one reducer anymore.
 import favsReducer from "../reducers/favourites"
 import jobsReducer from "../reducers/jobs"
+import searchReducer from "../reducers/searchParams"
 import thunk from 'redux-thunk'
 
 const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -13,11 +14,16 @@ const initialState = {
     },
     jobs:{
     joblist:[]
+    },
+    searchParams:{
+      position:"",
+      location:""
+
     }
   };
 
 
-const bigReducer = combineReducers({ favourites: favsReducer, joblist: jobsReducer })
+const bigReducer = combineReducers({ favourites: favsReducer, joblist: jobsReducer ,searchParams:searchReducer})
 // every sub-reducer is triggered at ANY action dispatching
 // export default function configureStore() {
 //   return createStore(

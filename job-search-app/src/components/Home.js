@@ -13,9 +13,24 @@ import {
   const mapStateToProps = (state) => state;
   
   const mapDispatchToProps = (dispatch) => ({
-    
+    setLocation: (location) =>
+    // fetch the data
+    dispatch(
+      {
+        type: "SET_LOCATION",
+        payload: location,
+      }
+    ),
+    setPosition: (position) =>
+    // fetch the data
+    dispatch(
+      {
+        type: "SET_POSITION",
+        payload: position,
+      }
+    ),
 
-      fetchJobswithThunk: () =>
+      fetchJobswithThunk: (jobs) =>
       dispatch(async (dispatch) => {
         // let position = this.state.position;
         // let location = this.state.location;
@@ -46,22 +61,9 @@ import {
 
  
  class Home extends Component {
-    state={
-        position:"",
-        location:"",
-        joblist:[],
-      }
-
-      submitForm= () => {
-          
-
-        
-          let position = this.state.position;
-          let location = this.state.location;
- 
-          this.props.fetchJobswithThunk(position,location)}
-       
+   
     render() {
+      console.log("jobs",this.props.searchParams)
         return (
             <Container>
 
@@ -70,11 +72,11 @@ import {
 
                     <Form.Group controlId="position">
                     
-                        <Form.Control onChange={(e)=>this.setState({position:e.currentTarget.value})}  value={this.state.position} type="text" placeholder="position" />
+                        <Form.Control onChange={(e)=>this.props.setPosition(e.currentTarget.value)}  type="text" placeholder="position" />
                     </Form.Group>
                     <Form.Group controlId="location">
                     
-                    <Form.Control  onChange={(e)=>this.setState({location:e.currentTarget.value})}  value={this.state.location} type="text" placeholder="location" />
+                    <Form.Control  onChange={(e)=>this.props.setLocation(e.currentTarget.value)}  type="text" placeholder="location" />
                     </Form.Group>
                     <Button variant="outline-primary" onClick={this.props.fetchJobswithThunk}>
               Search

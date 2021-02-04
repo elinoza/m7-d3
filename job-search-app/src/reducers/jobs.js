@@ -4,7 +4,7 @@ export default function (state = {}, action) {
         case "ADD-ALL-JOBS":
         return {
             ...state,
-            joblist: state.joblist.concat(action.payload),
+            joblist: action.payload,
         };
   
      
