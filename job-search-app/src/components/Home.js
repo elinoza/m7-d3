@@ -69,7 +69,7 @@ import {
             <Container>
 
             
-                 <Form  className="mt-5" >
+                 <Form  className="mt-5  searchBox" >
 
                     <Form.Group controlId="position">
                     
