@@ -30,18 +30,17 @@ import {
       }
     ),
 
-      fetchJobswithThunk: (jobs) =>
+      fetchJobswithThunk: (position,location) =>
       dispatch(async (dispatch) => {
-        // let position = this.state.position;
-        // let location = this.state.location;
+        
         let response = await fetch(
-          `  /positions.json?description="hr"&location="london",`,
+          `  /positions.json?description=${position.position}&location=${location.location}`,
           {
             method: "GET",
           }
         );
         const jobs = await response.json();
-            console.log(jobs);
+           
         if (response.ok) {
           
           dispatch({
@@ -61,9 +60,11 @@ import {
 
  
  class Home extends Component {
+
    
     render() {
-      console.log("jobs",this.props.searchParams)
+      console.log(this.props.position)
+   
         return (
             <Container>
 
@@ -78,14 +79,14 @@ import {
                     
                     <Form.Control  onChange={(e)=>this.props.setLocation(e.currentTarget.value)}  type="text" placeholder="location" />
                     </Form.Group>
-                    <Button variant="outline-primary" onClick={this.props.fetchJobswithThunk}>
+                    <Button variant="outline-primary" onClick={ ()=> this.props.fetchJobswithThunk(this.props.position,this.props.location)}>
               Search
             </Button>
                         
                     </Form>
 
                     <Row className="mt-4 mb-4">
-            {/* {this.state.joblist !==[] && this.state.joblist.map((job,index) => (<SingleJob key={index} job={job} />))} */}
+            {this.props.joblist.joblist && this.props.joblist.joblist.length > 0 && this.props.joblist.joblist.map((job,index) => (<SingleJob key={index} job={job} />))}
             </Row>
             </Container>
         )

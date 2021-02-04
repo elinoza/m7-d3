@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Favourites extends Component {
   render() {
     console.log(this.props.favourites)
+   
   
    
     return (
@@ -23,7 +24,7 @@ class Favourites extends Component {
       <div className="row">
         
         <ul className="col-sm-12" style={{ listStyle: "none" }}>
-          {this.props.favourites.map((job, i) => (
+          {this.props.favourites.favourites.map((job, i) => (
             <li key={i} className="my-4">
              
               <Card className="shadow d-flex" style={{ width: 'auto', height:"auto", border:"2px solid beige" }}>

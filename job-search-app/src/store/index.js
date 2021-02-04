@@ -23,7 +23,7 @@ const initialState = {
   };
 
 
-const bigReducer = combineReducers({ favourites: favsReducer, joblist: jobsReducer ,searchParams:searchReducer})
+const bigReducer = combineReducers({ favourites: favsReducer, joblist: jobsReducer ,position:searchReducer,location:searchReducer})
 // every sub-reducer is triggered at ANY action dispatching
 // export default function configureStore() {
 //   return createStore(

@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => state;
 class NavBar extends Component  {
     render(){
-        console.log(this.props.favourites)
+       
   
   return (
     <>

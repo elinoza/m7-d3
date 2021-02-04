@@ -13,7 +13,7 @@ export default function (state = {}, action) {
             ...state,
             favourites: [
                 ...state.favourites.filter(
-                  (id) => id !== action.payload.id
+                  (job) => job.id !== action.payload.id
                 )]
         };
        

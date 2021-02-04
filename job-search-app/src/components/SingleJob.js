@@ -22,7 +22,7 @@ class JobPost extends Component {
                 
                 
                     <Col md={2} lg={3}>
-                    <Card className="mb-3" className="shadow" style={{ width: 'auto', height:"auto", border:"2px solid beige" }}>
+                    <Card className="mb-3" className="shadow" style={{ width: 'auto', height:"auto"}}>
                     <Card.Body>
                       <Card.Title>{job.title}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
