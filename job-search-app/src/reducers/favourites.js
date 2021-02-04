@@ -7,6 +7,7 @@ export default function (state = {}, action) {
            favourites: state.favourites.concat(action.payload),
     
         };
+
       case "UNLIKE_JOB":
         return {
             ...state,
@@ -15,13 +16,7 @@ export default function (state = {}, action) {
                   (id) => id !== action.payload.id
                 )]
         };
-        case "ADD-ALL-JOBS":
-        return {
-            ...state,
-            joblist: state.joblist.concat(action.payload),
-        };
-  
-     
+       
       default:
         return state;
     }

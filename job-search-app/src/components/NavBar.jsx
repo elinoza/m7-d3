@@ -9,11 +9,6 @@ import {
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => state;
-
-
-
-
-
 class NavBar extends Component  {
     render(){
         console.log(this.props.favourites)
@@ -32,12 +27,11 @@ class NavBar extends Component  {
  Search Your Dream Job!
 </Navbar.Brand>
 
-<AiOutlineHeart    onClick={() =>this.props.history.push("/favourites")} className="ml-auto text-white " style={{fontSize:"30px"}} />
+<AiOutlineHeart  onClick={() =>this.props.history.push("/favourites")} className="ml-auto text-white " style={{fontSize:"30px"}} />
 </Navbar>
 
     </>
   );
     }
 }
-
 export default withRouter(connect(mapStateToProps)(NavBar));

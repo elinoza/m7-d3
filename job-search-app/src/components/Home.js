@@ -13,12 +13,38 @@ import {
   const mapStateToProps = (state) => state;
   
   const mapDispatchToProps = (dispatch) => ({
-    makeJobsGlobal: (jobs) =>
-      dispatch({
-        type: "ADD-ALL-JOBS",
-        payload: jobs,
-      }),
+    
+
+      fetchJobswithThunk: () =>
+      dispatch(async (dispatch) => {
+        // let position = this.state.position;
+        // let location = this.state.location;
+        let response = await fetch(
+          `  /positions.json?description="hr"&location="london",`,
+          {
+            method: "GET",
+          }
+        );
+        const jobs = await response.json();
+            console.log(jobs);
+        if (response.ok) {
+          
+          dispatch({
+            type: "ADD-ALL-JOBS",
+            payload: jobs,
+          })
+        } else {
+          dispatch(
+            {
+              type: "SET_ERROR",
+              payload: jobs,
+            }
+          )
+        }
+      })
   });
+
+ 
  class Home extends Component {
     state={
         position:"",
@@ -26,28 +52,15 @@ import {
         joblist:[],
       }
 
-      fetchJobs = async () => {
+      submitForm= () => {
           
-        try {
+
         
           let position = this.state.position;
           let location = this.state.location;
-          let response = await fetch(
-            `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${position}&location=${location}`,
-            {
-              method: "GET",
-            }
-          );
-          if (response.ok) {
-            const jobs = await response.json();
-            console.log(jobs);
-            this.setState({ joblist: jobs });
-            this.makeJobsGlobal(jobs)
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
+ 
+          this.props.fetchJobswithThunk(position,location)}
+       
     render() {
         return (
             <Container>
@@ -63,14 +76,14 @@ import {
                     
                     <Form.Control  onChange={(e)=>this.setState({location:e.currentTarget.value})}  value={this.state.location} type="text" placeholder="location" />
                     </Form.Group>
-                    <Button variant="outline-primary" onClick={this.fetchJobs}>
+                    <Button variant="outline-primary" onClick={this.props.fetchJobswithThunk}>
               Search
             </Button>
                         
                     </Form>
 
                     <Row className="mt-4 mb-4">
-            {this.state.joblist !==[] && this.state.joblist.map((job,index) => (<SingleJob key={index} job={job} />))}
+            {/* {this.state.joblist !==[] && this.state.joblist.map((job,index) => (<SingleJob key={index} job={job} />))} */}
             </Row>
             </Container>
         )
